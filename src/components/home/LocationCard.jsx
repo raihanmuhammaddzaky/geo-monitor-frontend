@@ -9,21 +9,11 @@ export default function LocationCard({ item }) {
     const badgeColor = statusColors[item.status?.toLowerCase()] || 'bg-gray-100 text-gray-800';
     const displayStatus = item.status || 'Unknown';
     
-    // Format waktu
-    const timeString = item.createdAt 
-        ? new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-        : '';
 
     return (
         <div className="p-4 border-b border-border-subtle hover:bg-gray-50 cursor-pointer transition-colors group flex gap-4 shadow-sm mb-1">
             <div className="flex-1 flex flex-col justify-between">
                 <div>
-                    <div className="flex items-center gap-2 mb-1">
-                        <span className={`px-2 py-0.5 ${badgeColor} text-[10px] font-bold uppercase tracking-wider rounded`}>
-                            {displayStatus}
-                        </span>
-                        <span className="font-mono-custom text-muted text-xs">{timeString}</span>
-                    </div>
                     <h3 className="text-[15px] font-bold text-text-main leading-tight group-hover:text-primary transition-colors">
                         {item.name || 'Tanpa Nama'}
                     </h3>
