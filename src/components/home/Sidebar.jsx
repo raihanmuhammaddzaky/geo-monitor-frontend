@@ -3,14 +3,14 @@ import SearchBar from './SearchBar';
 import FilterSection from './FilterSection';
 import FeedList from './FeedList';
 
-export default function Sidebar() {
+export default function Sidebar({locations, isLoading}) {
     const [isExpanded, setIsExpanded] = useState(false);
 
     return (
-        <aside className="w-[400px] h-full bg-white z-10 flex flex-col shadow-float border-r border-border-subtle shrink-0">
+        <aside className="w-100 h-full bg-white z-10 flex flex-col shadow-float border-r border-border-subtle shrink-0">
             <SearchBar isExpanded={isExpanded} setIsExpanded={setIsExpanded} />
             <FilterSection isExpanded={isExpanded} />
-            <FeedList />
+            <FeedList locations={locations} isLoading={isLoading} />
         </aside>
     );
 }
