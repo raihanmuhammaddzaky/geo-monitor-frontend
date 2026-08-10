@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMap } from 'react-leaflet';
 
 export default function LocationCard({ item }) {
     // Menggunakan categoryName untuk badge (karena ini peta publik, status selalu approved)
@@ -9,14 +10,16 @@ export default function LocationCard({ item }) {
     };
     const badgeColor = categoryColors[item.categoryName] || 'bg-primary/20 text-primary';
     const displayBadge = item.categoryName || 'Lokasi';
-    
+
     // Format waktu
-    const timeString = item.createdAt 
+    const timeString = item.createdAt
         ? new Date(item.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
         : '';
-    
+
+    const { setSelectedLocation } = useMap();
+
     return (
-        <div className="p-4 border-b border-border-subtle hover:bg-gray-50 cursor-pointer transition-colors group flex gap-4 shadow-sm mb-1">
+        <div className="p-4 border-b border-border-subtle hover:bg-gray-50 cursor-pointer transition-colors group flex gap-4 shadow-sm mb-1" onClick={() => setSelectedLocation(item)}>
             <div className="flex-1 flex flex-col justify-between">
                 <div>
                     <div className="flex items-center gap-2 mb-1">
@@ -35,10 +38,10 @@ export default function LocationCard({ item }) {
                 </div>
             </div>
             {item.imagePath ? (
-                <img 
-                    className="w-16 h-16 rounded-lg object-cover border border-border-subtle shrink-0" 
-                    alt={item.name || 'Lokasi'} 
-                    src={item.imagePath} 
+                <img
+                    className="w-16 h-16 rounded-lg object-cover border border-border-subtle shrink-0"
+                    alt={item.name || 'Lokasi'}
+                    src={item.imagePath}
                 />
             ) : (
                 <div className="w-16 h-16 rounded-lg bg-surface flex items-center justify-center border border-border-subtle shrink-0">

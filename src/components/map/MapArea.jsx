@@ -4,7 +4,8 @@ import { PopupDetail } from './PopupDetail';
 
 
 
-export default function MapArea({ locations = [], isLoading }) {
+export default function MapArea() {
+    const { locations, isLoading } = useMap();
     const defaultCenter = [-6.2088, 106.8456];
     return (
         <main className="flex-1 relative z-0">
@@ -23,10 +24,7 @@ export default function MapArea({ locations = [], isLoading }) {
 
                     return (
                         <Marker key={location.id} position={[location.latitude, location.longitude]}>
-
                             <PopupDetail location={location} />
-
-
                         </Marker>
                     );
                 })}

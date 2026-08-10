@@ -1,8 +1,10 @@
 import React from 'react';
 import LocationCard from './LocationCard';
+import { useMap } from 'react-leaflet';
 
 
 export default function FeedList({ locations, isLoading }) {
+    const {locations, isLoading} = useMap();
     // Pastikan locations adalah array sebelum di-map
     const safeLocations = Array.isArray(locations) ? locations : [];
 
