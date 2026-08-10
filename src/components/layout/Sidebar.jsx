@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import SearchBar from './SearchBar';
-import FilterSection from './FilterSection';
-import FeedList from './FeedList';
+import SearchBar from '../search/SearchBar';
+import FilterSection from '../search/FilterSection';
+import FeedList from '../feed/FeedList';
 
 export default function Sidebar({locations, isLoading}) {
     const [isExpanded, setIsExpanded] = useState(false);

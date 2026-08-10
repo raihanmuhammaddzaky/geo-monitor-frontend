@@ -4,8 +4,8 @@ export default function MapArea() {
     return (
         <main className="flex-1 relative bg-surface z-0">
             {/* Map Background Placeholder */}
-            <div 
-                className="absolute inset-0 bg-cover bg-center" 
+            <div
+                className="absolute inset-0 bg-cover bg-center"
                 style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDr5wfDNGaD_ac7R_goEhRwE6Ie-ZIUtwta56BtFDga3kQ2PATI6yM0omshssi50B4n0L_2M-fd1jmZL1Ts5vVh5Nrfh4AfYooqcNEs8iH9gVo43b61z5FXifPTiZUVWVIDC7nVPhOjUP_cQB-qNG29SKKuSZqtiaS18pRm1RhXLI6_W4bVd3_GHchOnqPkN3O8jM-6roK8vAAre3CrherXT2s934h6UUWYShHukZC9wkbI3kJi0O26Q')" }}
             >
                 {/* Overlay to make it look more like a UI map than a photo */}

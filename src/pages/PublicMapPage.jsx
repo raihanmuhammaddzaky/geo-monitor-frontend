@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../components/home/Sidebar';
-import MapArea from '../components/home/MapArea';
+import Sidebar from '../components/layout/Sidebar';
+import MapArea from '../components/map/MapArea';
 import { locationApi } from '../api/locationApi';
 
 export default function PublicMapPage() {
