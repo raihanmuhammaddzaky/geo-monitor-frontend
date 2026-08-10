@@ -1,7 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { PopupDetail } from './PopupDetail';
-
+import { useMap } from '../../context/MapContext';
 
 
 export default function MapArea() {

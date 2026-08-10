@@ -5,11 +5,9 @@ export default function LocationDetail({ location, onBack }) {
     if (!location) return null;
 
     return (
-        // Gunakan absolute inset-0 agar komponen ini menutupi seluruh isi Sidebar lama (List & Search)
-        // Tambahkan animasi slide dari kanan agar terlihat mulus dan elegan
+      
         <div className="absolute inset-0 bg-white z-30 flex flex-col h-full overflow-y-auto animate-in slide-in-from-right-4 duration-300">
             
-            {/* 1. Header & Tombol Kembali (Back) */}
             <div className="sticky top-0 z-10 flex items-center gap-3 p-4 bg-white/80 backdrop-blur-md border-b border-border-subtle">
                 <button 
                     onClick={onBack}
@@ -22,7 +20,6 @@ export default function LocationDetail({ location, onBack }) {
                 </h2>
             </div>
 
-            {/* 2. Gambar Sampul Besar */}
             <div className="w-full h-48 bg-gray-100 relative shrink-0">
                 {location.imagePath ? (
                     <img 
@@ -36,13 +33,11 @@ export default function LocationDetail({ location, onBack }) {
                         <span className="text-xs font-medium">Tidak ada foto</span>
                     </div>
                 )}
-                {/* Badge Kategori Mengambang */}
                 <span className="absolute bottom-3 left-4 px-3 py-1 bg-blue-600 text-white text-[11px] font-bold uppercase tracking-wider rounded shadow-md">
                     {location.categoryName || 'Kategori'}
                 </span>
             </div>
 
-            {/* 3. Konten Utama */}
             <div className="p-5 flex flex-col gap-6">
                 
                 {/* Judul & Info Dasar */}

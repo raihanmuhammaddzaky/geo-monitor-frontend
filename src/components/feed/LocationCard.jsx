@@ -1,6 +1,5 @@
 import React from 'react';
-import { useMap } from 'react-leaflet';
-
+import { useMap } from '../../context/MapContext';
 export default function LocationCard({ item }) {
     // Menggunakan categoryName untuk badge (karena ini peta publik, status selalu approved)
     const categoryColors = {
