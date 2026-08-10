@@ -4,7 +4,7 @@ export const PopupDetail = ({ location }) => {
     const { imagePath, name, categoryName, city, description } = location;
     return (
         <Popup>
-            <div className="min-w-[200px] max-w-[250px]">
+            <div className="min-w-50 max-w-62.5">
 
                 {imagePath && (
                     <img
