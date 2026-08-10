@@ -1,24 +1,44 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, useMap as useLeafletMap } from 'react-leaflet';
 import { PopupDetail } from './PopupDetail';
 import { useMap } from '../../context/MapContext';
+
+function MapController() {
+    const leafletMap = useLeafletMap();
+    const { selectedLocation } = useMap();
+    useEffect(() => {
+        if (selectedLocation && selectedLocation.latitude && selectedLocation.longitude) {
+            leafletMap.flyTo(
+                [selectedLocation.latitude, selectedLocation.longitude],
+                15,
+                { duration: 1.5 }
+            );
+        }
+    }, [selectedLocation, leafletMap]);
+    return null;
+}
 
 
 export default function MapArea() {
     const { locations, isLoading } = useMap();
     const defaultCenter = [-6.2088, 106.8456];
+
+
     return (
         <main className="flex-1 relative z-0">
+
             <MapContainer
                 center={defaultCenter}
                 zoom={11}
                 className="w-full h-full"
                 zoomControl={false}
             >
+                <MapController />
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
+
                 {!isLoading && locations.map((location) => {
                     if (!location.latitude || !location.longitude) return null;
 
