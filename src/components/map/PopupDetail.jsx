@@ -1,35 +1,36 @@
 import { Popup } from "react-leaflet";
 
-export const PopupDetail = (loc) => {
+export const PopupDetail = ({ location }) => {
+    const { imagePath, name, categoryName, city, description } = location;
     return (
         <Popup>
             <div className="min-w-[200px] max-w-[250px]">
 
-                {loc.imagePath && (
+                {imagePath && (
                     <img
-                        src={loc.imagePath}
-                        alt={loc.name}
+                        src={imagePath}
+                        alt={name}
                         className="w-full h-28 object-cover rounded-t-md mb-2"
                     />
                 )}
 
                 <div className="p-1">
                     <span className="inline-block px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold uppercase tracking-wider rounded mb-1">
-                        {loc.categoryName || 'Lokasi'}
+                        {categoryName || 'Lokasi'}
                     </span>
 
                     <h3 className="font-bold text-[15px] text-gray-900 leading-tight mb-1">
-                        {loc.name}
+                        {name}
                     </h3>
 
                     <div className="flex items-center gap-1 text-gray-500 mb-2">
                         <span className="material-symbols-outlined text-[14px]">location_on</span>
-                        <span className="text-xs font-medium">{loc.city}</span>
+                        <span className="text-xs font-medium">{city}</span>
                     </div>
 
-                    {loc.description && (
+                    {description && (
                         <p className="text-xs text-gray-600 line-clamp-2 mb-3 border-t border-gray-100 pt-2">
-                            {loc.description}
+                            {description}
                         </p>
                     )}
 

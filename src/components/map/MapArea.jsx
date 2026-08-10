@@ -18,14 +18,14 @@ export default function MapArea({ locations = [], isLoading }) {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {!isLoading && locations.map((loc) => {
-                    if (!loc.latitude || !loc.longitude) return null;
+                {!isLoading && locations.map((location) => {
+                    if (!location.latitude || !location.longitude) return null;
 
                     return (
-                        <Marker key={loc.id} position={[loc.latitude, loc.longitude]}>
-                            <PopupDetail>
-                                <PopupDetail loc={loc} />
-                            </PopupDetail>
+                        <Marker key={location.id} position={[location.latitude, location.longitude]}>
+
+                            <PopupDetail location={location} />
+
 
                         </Marker>
                     );
