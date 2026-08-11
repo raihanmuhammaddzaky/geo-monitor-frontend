@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMap } from '../../context/MapContext';
 
 export default function SearchBar({ isExpanded, setIsExpanded }) {
     const { searchQueary, setSearchQuery } = useMap();
@@ -21,8 +22,8 @@ export default function SearchBar({ isExpanded, setIsExpanded }) {
             <button
                 onClick={() => setIsExpanded(!isExpanded)}
                 className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-colors border shadow-sm ${isExpanded
-                        ? 'bg-primary/10 text-primary border-primary/30'
-                        : 'bg-white text-muted hover:bg-gray-50 border-border-subtle'
+                    ? 'bg-primary/10 text-primary border-primary/30'
+                    : 'bg-white text-muted hover:bg-gray-50 border-border-subtle'
                     }`}
                 title="Toggle Filters"
             >
