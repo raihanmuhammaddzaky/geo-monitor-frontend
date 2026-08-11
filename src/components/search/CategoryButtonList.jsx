@@ -3,8 +3,8 @@ import { useMap } from '../../context/MapContext';
 import CategoryButton from './CategoryButton';
 
 export default function CategoryButtonList() {
-    const { searchCategory, setSearchCategory } = useMap();
-    const categories = ['Infrastruktur', 'Bencana', 'Fasilitas Umum'];
+    const { locations, searchCategory, setSearchCategory } = useMap();
+    const categories = [...new Set(locations.map(loc => loc.categoryName))].filter(Boolean);
 
     return (
         <div className="flex flex-col gap-3">
