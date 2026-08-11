@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { MapContainer, TileLayer, Marker, useMap as useLeafletMap } from 'react-leaflet';
 import { PopupDetail } from './PopupDetail';
 import { useMap } from '../../context/MapContext';
@@ -20,8 +20,18 @@ function MapController() {
 
 
 export default function MapArea() {
-    const { locations, isLoading } = useMap();
+    const { locations, isLoading, selectedLocation } = useMap();
     const defaultCenter = [-6.2088, 106.8456];
+    const markerRefs = useRef({});
+
+    useEffect(() => {
+        if (selectedLocation && markerRefs.current[selectedLocation.id]) {
+            setTimeout(() => {
+                markerRefs.current[selectedLocation.id].openPopup();
+            }, 300);
+        }
+    }, [selectedLocation]);
+
     return (
         <main className="flex-1 relative z-0">
 
@@ -42,7 +52,11 @@ export default function MapArea() {
                     if (!location.latitude || !location.longitude) return null;
 
                     return (
-                        <Marker key={location.id} position={[location.latitude, location.longitude]}>
+                        <Marker
+                            key={location.id}
+                            position={[location.latitude, location.longitude]}
+                            ref={(ref) => { markerRefs.current[location.id] = ref; }}
+                        >
                             <PopupDetail location={location} />
                         </Marker>
                     );
