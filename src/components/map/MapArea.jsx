@@ -22,8 +22,6 @@ function MapController() {
 export default function MapArea() {
     const { locations, isLoading } = useMap();
     const defaultCenter = [-6.2088, 106.8456];
-
-
     return (
         <main className="flex-1 relative z-0">
 
@@ -33,11 +31,12 @@ export default function MapArea() {
                 className="w-full h-full"
                 zoomControl={false}
             >
-                <MapController />
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
+
+                <MapController />
 
                 {!isLoading && locations.map((location) => {
                     if (!location.latitude || !location.longitude) return null;
