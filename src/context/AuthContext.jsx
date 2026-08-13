@@ -6,19 +6,21 @@ const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const checkLogInUser = async () => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
-          const response = await apiClient.get("users/me");
-          setUser(response.data.user);
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          setUser(payload);
         } catch (error) {
           localStorage.removeItem("token");
           setUser(null);
         }
       }
+      setIsLoading(false);
     }
     checkLogInUser();
   }, []);
@@ -27,7 +29,7 @@ export function AuthProvider({ children }) {
     try {
       const response = await apiClient.post('auth/login', { email, password });
       const { token, user } = response.data.data;
-      
+
       localStorage.setItem("token", token);
       setUser(user);
       return true;
@@ -43,7 +45,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
@@ -52,7 +54,19 @@ export function AuthProvider({ children }) {
 export const useAuth = () => useContext(AuthContext);
 
 export function ProtectedRoute({ children, allowedRoles }) {
-  const { user } = useAuth();
+  const { user, isLoading } = useAuth();
+
+  if (isLoading) {
+    // Tampilkan loading spinner saat auth sedang dicek
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Memuat...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!user) {
     return <Navigate to="/login" replace />;
