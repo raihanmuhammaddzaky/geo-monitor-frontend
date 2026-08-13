@@ -33,10 +33,6 @@ export const PopupDetail = ({ location }) => {
                             {description}
                         </p>
                     )}
-
-                    <button className="w-full py-1.5 bg-blue-600 text-white text-xs font-bold rounded hover:bg-blue-700 transition-colors">
-                        Lihat Detail
-                    </button>
                 </div>
             </div>
         </Popup>
