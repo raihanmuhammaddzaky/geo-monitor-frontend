@@ -1,14 +1,17 @@
 import { Popup } from "react-leaflet";
+import { getImageUrl } from "../../utils/imageUtils";
 
 export const PopupDetail = ({ location }) => {
     const { imagePath, name, categoryName, city, description } = location;
+
+
     return (
         <Popup>
             <div className="min-w-50 max-w-62.5">
 
                 {imagePath && (
                     <img
-                        src={imagePath}
+                        src={getImageUrl(imagePath)}
                         alt={name}
                         className="w-full h-28 object-cover rounded-t-md mb-2"
                     />

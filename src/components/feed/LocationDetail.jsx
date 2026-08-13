@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImageUrl } from '../../utils/imageUtils';
 
 export default function LocationDetail({ location, onBack }) {
     // Cegah error jika data kosong
@@ -23,7 +24,7 @@ export default function LocationDetail({ location, onBack }) {
             <div className="w-full h-48 bg-gray-100 relative shrink-0">
                 {location.imagePath ? (
                     <img 
-                        src={location.imagePath} 
+                        src={getImageUrl(location.imagePath)} 
                         alt={location.name} 
                         className="w-full h-full object-cover"
                     />
