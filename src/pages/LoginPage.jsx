@@ -8,7 +8,7 @@ export default function LoginPage() {
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     
-    const { login } = useAuth();
+    const { login, user } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -19,7 +19,16 @@ export default function LoginPage() {
         const success = await login(email, password);
         
         if (success) {
-            navigate('/admin');
+            // Redirect berdasarkan role dari response login
+            const token = localStorage.getItem('token');
+            if (token) {
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    navigate(payload.role === 'admin' ? '/admin' : '/worker');
+                } catch {
+                    navigate('/');
+                }
+            }
         } else {
             setError('Email atau password salah. Silakan coba lagi.');
             setIsLoading(false);
@@ -31,7 +40,7 @@ export default function LoginPage() {
             <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
                 <div>
                     <h2 className="mt-2 text-center text-3xl font-extrabold text-gray-900">
-                        Login Admin
+                        Login Dashboard
                     </h2>
                     <p className="mt-2 text-center text-sm text-gray-600">
                         Silakan masuk untuk mengelola Dashboard Lokasi
