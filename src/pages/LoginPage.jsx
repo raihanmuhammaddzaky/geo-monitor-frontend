@@ -19,10 +19,8 @@ export default function LoginPage() {
         const success = await login(email, password);
         
         if (success) {
-            // Jika berhasil, arahkan ke halaman admin
             navigate('/admin');
         } else {
-            // Jika gagal, tampilkan pesan error
             setError('Email atau password salah. Silakan coba lagi.');
             setIsLoading(false);
         }
